@@ -1,13 +1,76 @@
+
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shuaib Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHUAIB | JARVIS AI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+background:#020914;color:#00d9ff;
+font-family:Arial,sans-serif;
+text-align:center;min-height:100vh;
+overflow-x:hidden;
+}
+header{padding:25px;letter-spacing:5px;
+text-shadow:0 0 15px #00d9ff}
+.circle{
+width:220px;height:220px;margin:35px auto;
+border:3px solid #00d9ff;border-radius:50%;
+box-shadow:0 0 20px #00d9ff, inset 0 0 25px #007bff;
+display:flex;align-items:center;justify-content:center;
+animation:glow 3s infinite alternate;
+}
+.avatar{font-size:100px}
+h1{font-size:32px;text-shadow:0 0 15px #00d9ff}
+p{color:#a5eaff;margin:15px}
+.card{
+border:1px solid #008cff;border-radius:12px;
+padding:20px;margin:15px auto;max-width:330px;
+background:#06182b;box-shadow:0 0 12px #004c80;
+}
+button{
+background:transparent;color:#00d9ff;
+border:1px solid #00d9ff;padding:13px 25px;
+border-radius:25px;margin:10px;cursor:pointer;
+box-shadow:0 0 10px #00d9ff;
+}
+button:hover{background:#00d9ff;color:#001020}
+@keyframes glow{
+from{transform:rotate(0deg);box-shadow:0 0 10px #00d9ff}
+to{transform:rotate(5deg);box-shadow:0 0 35px #00d9ff}
+}
+footer{padding:25px;color:#548ba8}
+</style>
 </head>
 <body>
-  <h1>Namaste! Meri pehli website live hai.</h1>
-  <p>Yeh website GitHub Pages par chal rahi hai.</p>
+<header>◈ J.A.R.V.I.S ◈</header>
+<div class="circle"><div class="avatar">🤖</div></div>
+<h1>HELLO, I'M SHUAIB</h1>
+<p>WELCOME TO MY DIGITAL WORLD</p>
+<div class="card">
+<h2>SYSTEM STATUS</h2>
+<p>● ALL SYSTEMS ONLINE</p>
+<p>AI INTERFACE ACTIVE</p>
+</div>
+<div class="card">
+<h2>ABOUT ME</h2>
+<p>I'm Shuaib. Welcome to my futuristic world.</p>
+</div>
+<div class="card">
+<h2>MY COMMAND CENTER</h2>
+<button onclick="speak()">VOICE SYSTEM</button>
+<button onclick="alert('JARVIS SYSTEM ONLINE')">SYSTEM CHECK</button>
+</div>
+<footer>POWERED BY SHUAIB © 2026</footer>
+<script>
+function speak(){
+if('speechSynthesis' in window){
+let msg=new SpeechSynthesisUtterance("Hello Shuaib. Jarvis system is online.");
+speechSynthesis.speak(msg);
+}else{alert("Voice not supported")}
+}
+</script>
 </body>
 </html>
-
