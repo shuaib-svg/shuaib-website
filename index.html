@@ -81,6 +81,7 @@ footer{padding:25px;color:#548ba8}
   <div class="ai-chat">
   <h2>SHUAIB AI CHAT</h2>
   <input type="text" id="userInput" placeholder="Ask me anything...">
+    <button onclick="startListening()">🎙️ MIC</button>
   <button onclick="chat()">SEND</button>
   <p id="reply">Hello! I am Shuaib AI.</p>
   </div>
@@ -92,7 +93,17 @@ let msg=new SpeechSynthesisUtterance("Hello Shuaib. Jarvis system is online.");
 speechSynthesis.speak(msg);
 }else{alert("Voice not supported")}
 }
-  
+  function startListening() {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+  recognition.lang = "hi-IN";
+  recognition.start();
+
+  recognition.onresult = function(event) {
+    document.getElementById("userInput").value =
+      event.results[0][0].transcript;
+  };
+  }
 async function chat() {
   let question = document.getElementById("userInput").value.trim();
   let reply = document.getElementById("reply");
