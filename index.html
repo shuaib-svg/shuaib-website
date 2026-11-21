@@ -119,6 +119,10 @@ async function chat() {
     const data = await response.json();
 
     reply.innerText = data.reply || data.error || "No response received.";
+    if (data.reply) {
+  let msg = new SpeechSynthesisUtterance(data.reply);
+  speechSynthesis.speak(msg);
+    }
 
   } catch (error) {
     reply.innerText = "Connection error. Please try again.";
