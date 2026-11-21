@@ -120,7 +120,9 @@ async function chat() {
 
     reply.innerText = data.reply || data.error || "No response received.";
     if (data.reply) {
-  let msg = new SpeechSynthesisUtterance(data.reply);
+  let msg = new SpeechSynthesisUtterance(
+  data.reply.replace(/SHUAIB/gi, "Shuaib")
+);
       msg.lang = "hi-IN";
       msg.rate = 0.9;
 msg.pitch = 0.85;
