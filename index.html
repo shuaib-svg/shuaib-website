@@ -120,8 +120,8 @@ async function chat() {
 
     reply.innerText = data.reply || data.error || "No response received.";
     if (data.reply) {
-  let msg = new SpeechSynthesisUtterance(
-  data.reply.replace(/SHUAIB/gi, "Shuaib")
+  let spokenText = data.reply.replace(/SHUAIB/gi, "शुऐब");
+let msg = new SpeechSynthesisUtterance(spokenText);
 );
       msg.lang = "hi-IN";
       msg.rate = 0.9;
