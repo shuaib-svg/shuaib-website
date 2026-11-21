@@ -101,6 +101,7 @@ speechSynthesis.speak(msg);
 
   recognition.onresult = function(event) {
     document.getElementById("userInput").value =
+      chat();
       event.results[0][0].transcript;
   };
   }
