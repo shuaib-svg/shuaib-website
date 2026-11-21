@@ -122,6 +122,8 @@ async function chat() {
     if (data.reply) {
   let msg = new SpeechSynthesisUtterance(data.reply);
       msg.lang = "hi-IN";
+      msg.rate = 0.9;
+msg.pitch = 0.85;
   speechSynthesis.speak(msg);
     }
 
