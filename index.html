@@ -94,20 +94,31 @@ speechSynthesis.speak(msg);
 }else{alert("Voice not supported")}
 }
   function startListening() {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+  if (!SpeechRecognition) {
+    alert("Microphone not supported");
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
   recognition.lang = "hi-IN";
+
+  recognition.onresult = async function(event) {
+    let transcript = event.results[0][0].transcript;
+
+    if (transcript && typeof transcript.then === "function") {
+      transcript = await transcript;
+    }
+
+    document.getElementById("userInput").value = String(transcript || "");
+
+    if (transcript) {
+      await chat();
+    }
+  };
+
   recognition.start();
-
-  recognition.onresult = function(event) {
-    document.getElementById("userInput").value =
-      event.results[0][0].transcript;
-
-    setTimeout(() => {
-  chat();
-}, 300);
-};
-  
   }
 async function chat() {
   let question = document.getElementById("userInput").value.trim();
