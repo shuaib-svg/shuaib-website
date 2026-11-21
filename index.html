@@ -103,7 +103,9 @@ speechSynthesis.speak(msg);
     document.getElementById("userInput").value =
       event.results[0][0].transcript;
 
-    chat();
+    setTimeout(() => {
+  chat();
+}, 300);
 };
   
   }
