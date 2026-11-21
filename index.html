@@ -121,6 +121,7 @@ async function chat() {
     reply.innerText = data.reply || data.error || "No response received.";
     if (data.reply) {
   let msg = new SpeechSynthesisUtterance(data.reply);
+      msg.lang = "hi-IN";
   speechSynthesis.speak(msg);
     }
 
