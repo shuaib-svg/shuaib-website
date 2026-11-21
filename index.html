@@ -92,14 +92,39 @@ let msg=new SpeechSynthesisUtterance("Hello Shuaib. Jarvis system is online.");
 speechSynthesis.speak(msg);
 }else{alert("Voice not supported")}
 }
-  function chat() {
-  let question = document.getElementById("userInput").value;
+  
+async function chat() {
+  let question = document.getElementById("userInput").value.trim();
   let reply = document.getElementById("reply");
 
-  if (question.trim() === "") {
+  if (question === "") {
     reply.innerText = "Please ask me something!";
-  } else {
-    reply.innerText = "Hello! Shuaib AI received your message: " + question;
+    return;
+  }
+
+  reply.innerText = "SHUAIB AI is thinking...";
+
+  try {
+    const response = await fetch(
+      "https://noisy-voice-88ee.alosha-alban.workers.dev",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: question })
+      }
+    );
+
+    const data = await response.json();
+
+    reply.innerText = data.reply || data.error || "No response received.";
+
+  } catch (error) {
+    reply.innerText = "Connection error. Please try again.";
+  }
+}
+  
   }
       }
 </script>
