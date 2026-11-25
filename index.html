@@ -80,6 +80,7 @@ footer{padding:25px;color:#548ba8}
 </div>
   <div class="ai-chat">
   <h2>SHUAIB AI CHAT</h2>
+    <div id="chatHistory"></div>
   <input type="text" id="userInput" placeholder="Ask me anything...">
     <button onclick="startListening()">🎙️ MIC</button>
   <button onclick="chat()">SEND</button>
@@ -120,6 +121,14 @@ speechSynthesis.speak(msg);
 
   recognition.start();
   }
+  function showChatHistory() {
+  let history = JSON.parse(localStorage.getItem("shuaibChatHistory") || "[]");
+  let box = document.getElementById("chatHistory");
+
+  box.innerHTML = history.map(msg =>
+    `<p><b>${msg.role === "user" ? "You" : "SHUAIB AI"}:</b> ${msg.content}</p>`
+  ).join("");
+  }
 async function chat() {
   let question = document.getElementById("userInput").value.trim();
   let reply = document.getElementById("reply");
@@ -151,6 +160,7 @@ chatHistory.push({ role: "user", content: question });
     if (data.reply) {
   chatHistory.push({ role: "assistant", content: data.reply });
   localStorage.setItem("shuaibChatHistory", JSON.stringify(chatHistory.slice(-20)));
+      showChatHistory();
     }
 
     reply.innerText = data.reply || data.error || "No response received.";
@@ -168,8 +178,8 @@ msg.pitch = 0.85;
   } catch (error) {
     reply.innerText = "Connection error. Please try again.";
   }
-}
-  
+}5
+  showChatHistory();
 </script>
 </body>
 </html>
