@@ -8,35 +8,56 @@ ki
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-background:#020914;color:#00d9ff;
+background: radial-gradient(circle at top, #102b50, #020817 70%);
+color: #ffffff;
 font-family:Arial,sans-serif;
 text-align:center;min-height:100vh;
 overflow-x:hidden;
 }
-header{padding:25px;letter-spacing:5px;
-text-shadow:0 0 15px #00d9ff}
+header {
+  padding: 25px;
+  letter-spacing: 5px;
+  text-shadow: 0 0 10px #00d9ff, 0 0 25px #007bff;
+  animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+  from {
+    text-shadow: 0 0 5px #00d9ff;
+  }
+  to {
+    text-shadow: 0 0 15px #00d9ff, 0 0 30px #007bff;
+  }
+}
 .circle{
 width:220px;height:220px;margin:35px auto;
 border:3px solid #00d9ff;border-radius:50%;
 box-shadow:0 0 20px #00d9ff, inset 0 0 25px #007bff;
 display:flex;align-items:center;justify-content:center;
 animation:glow 3s infinite alternate;
+  transition: transform 0.4s ease;
 }
 .avatar {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  display: block;
   border-radius: 50%;
   box-shadow: 0 0 15px #00d9ff, 0 0 35px #00d9ff;
   animation: glow 2s infinite alternate;
 }
-  @keyframes glow {
+
+.circle:hover {
+  transform: scale(1.05);
+}
+
+@keyframes glow {
   from {
     box-shadow: 0 0 10px #00d9ff;
   }
   to {
     box-shadow: 0 0 30px #00d9ff, 0 0 50px #0088ff;
-  }
   }
 }
 h1{font-size:32px;text-shadow:0 0 15px #00d9ff}
@@ -46,23 +67,141 @@ border:1px solid #008cff;border-radius:12px;
 padding:20px;margin:15px auto;max-width:330px;
 background:#06182b;box-shadow:0 0 12px #004c80;
 }
-button{
-background:transparent;color:#00d9ff;
-border:1px solid #00d9ff;padding:13px 25px;
-border-radius:25px;margin:10px;cursor:pointer;
-box-shadow:0 0 10px #00d9ff;
+button {
+  background: linear-gradient(45deg, #005bea, #00d9ff);
+  color: white;
+  border: 1px solid #00d9ff;
+  padding: 13px 25px;
+  border-radius: 12px;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 12px #00d9ff;
+  transition: 0.3s;
 }
-button:hover{background:#00d9ff;color:#001020}
-@keyframes glow{
-from{transform:rotate(0deg);box-shadow:0 0 10px #00d9ff}
-to{transform:rotate(5deg);box-shadow:0 0 35px #00d9ff}
+
+button:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px #00d9ff;
 }
+
+button:active {
+  transform: scale(0.95);
+}
+
+  .card {
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px #00d9ff;
+  border-color: #00d9ff;
+}
+  .ai-chat {
+  width: 94%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 20, 45, 0.85);
+  border: 1px solid #00d9ff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+}
+
+.ai-chat h2 {
+  color: #00d9ff;
+  text-shadow: 0 0 12px #00d9ff;
+}
+  input {
+  width: 90%;
+  max-width: 350px;
+  background: #06182d;
+  color: #00d9ff;
+  border: 1px solid #00d9ff;
+  border-radius: 12px;
+  padding: 13px;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+}
+
+input:focus {
+  box-shadow: 0 0 18px #00d9ff;
+}
+  #reply {
+  color: #00d9ff;
+  font-size: 17px;
+  line-height: 1.6;
+  padding: 15px;
+  background: rgba(0, 40, 70, 0.4);
+  border-left: 3px solid #00d9ff;
+  border-radius: 10px;
+  text-shadow: 0 0 5px #00d9ff;
+  }
+  #chatHistory {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(0, 10, 30, 0.6);
+  border: 1px solid #007bff;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+
+#chatHistory p {
+  padding: 10px;
+  background: rgba(0, 80, 130, 0.2);
+  border-radius: 10px;
+  color: #d9faff;
+  border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+}
+  html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #00d9ff;
+  color: #020817;
+}
+
+@media (max-width: 600px) {
+  .ai-chat {
+    width: 94%;
+    padding: 15px;
+  }
+
+  header {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  button {
+    padding: 10px 14px;
+    margin: 5px;
+  }
+
+  #reply {
+    font-size: 15px;
+  }
+}
+  body {
+  background-size: 200% 200%;
+  animation: bgMove 8s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 footer{padding:25px;color:#548ba8}
 </style>
 </head>
 <body>
 <header>◈ J.A.R.V.I.S ◈</header>
-<img class="avatar" src="shuaib-avatar.jpg" alt="Shuaib AI Avatar">
+<div class="circle">
+  <img class="avatar" src="shuaib-avatar.jpg" alt="Shuaib AI Avatar">
+</div>
 <h1>HELLO, I'M SHUAIB</h1>
 <p>WELCOME TO MY DIGITAL WORLD</p>
 <div class="card">
