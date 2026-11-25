@@ -396,15 +396,28 @@ updateClock();
 setInterval(updateClock, 1000);
 function jarvisGreeting() {
   let avatar = document.querySelector(".ai-avatar");
-let msg = new SpeechSynthesisUtterance(spokenText);
+  let msg = new SpeechSynthesisUtterance(
+    "Welcome back, SHUAIB. All systems are online."
+  );
 
-msg.lang = "hi-IN";
-msg.rate = 0.9;
-msg.pitch = 0.85;
+  msg.lang = "en-US";
+  msg.rate = 0.9;
+  msg.pitch = 0.85;
 
-msg.onstart = () => {
-  if (avatar) avatar.classList.add("speaking");
-};
+  msg.onstart = () => {
+    if (avatar) avatar.classList.add("speaking");
+  };
+
+  msg.onend = () => {
+    if (avatar) avatar.classList.remove("speaking");
+  };
+
+  msg.onerror = () => {
+    if (avatar) avatar.classList.remove("speaking");
+  };
+
+  speechSynthesis.speak(msg);
+}
 
 msg.onend = () => {
   if (avatar) avatar.classList.remove("speaking");
@@ -526,12 +539,26 @@ chatHistory.push({ role: "user", content: question });
   let spokenText = data.reply
   .replace(/\*\*/g, "")
   .replace(/SHUAIB/gi, "Shu-aib");
+let avatar = document.querySelector(".ai-avatar");
 let msg = new SpeechSynthesisUtterance(spokenText);
-      msg.lang = "hi-IN";
-      msg.rate = 0.9;
+
+msg.lang = "hi-IN";
+msg.rate = 0.9;
 msg.pitch = 0.85;
-  speechSynthesis.speak(msg);
-    }
+
+msg.onstart = () => {
+  if (avatar) avatar.classList.add("speaking");
+};
+
+msg.onend = () => {
+  if (avatar) avatar.classList.remove("speaking");
+};
+
+msg.onerror = () => {
+  if (avatar) avatar.classList.remove("speaking");
+};
+
+speechSynthesis.speak(msg);
 
   } catch (error) {
     reply.innerText = "Connection error. Please try again.";
