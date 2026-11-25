@@ -1,4 +1,4 @@
-
+ki
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,21 +122,23 @@ speechSynthesis.speak(msg);
 
   recognition.start();
   }
-  function showChatHistory() {
-    function clearChat() {
+  function clearChat() {
   if (confirm("Are you sure you want to clear chat?")) {
     localStorage.removeItem("shuaibChatHistory");
     document.getElementById("chatHistory").innerHTML = "";
     document.getElementById("reply").innerText = "Hello! I am Shuaib AI.";
+    document.getElementById("userInput").value = "";
   }
-    }
+}
+
+function showChatHistory() {
   let history = JSON.parse(localStorage.getItem("shuaibChatHistory") || "[]");
   let box = document.getElementById("chatHistory");
 
   box.innerHTML = history.map(msg =>
     `<p><b>${msg.role === "user" ? "You" : "SHUAIB AI"}:</b> ${msg.content}</p>`
   ).join("");
-  }
+}
 async function chat() {
   let question = document.getElementById("userInput").value.trim();
   let reply = document.getElementById("reply");
