@@ -84,6 +84,7 @@ footer{padding:25px;color:#548ba8}
   <input type="text" id="userInput" placeholder="Ask me anything...">
     <button onclick="startListening()">🎙️ MIC</button>
   <button onclick="chat()">SEND</button>
+    <button onclick="clearChat()">🗑️ CLEAR CHAT</button>
   <p id="reply">Hello! I am Shuaib AI.</p>
   </div>
 <footer>POWERED BY SHUAIB © 2026</footer>
@@ -122,6 +123,13 @@ speechSynthesis.speak(msg);
   recognition.start();
   }
   function showChatHistory() {
+    function clearChat() {
+  if (confirm("Are you sure you want to clear chat?")) {
+    localStorage.removeItem("shuaibChatHistory");
+    document.getElementById("chatHistory").innerHTML = "";
+    document.getElementById("reply").innerText = "Hello! I am Shuaib AI.";
+  }
+    }
   let history = JSON.parse(localStorage.getItem("shuaibChatHistory") || "[]");
   let box = document.getElementById("chatHistory");
 
