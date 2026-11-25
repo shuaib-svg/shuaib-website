@@ -279,6 +279,40 @@ min-width: 0;
     filter: drop-shadow(0 0 24px #00d9ff);
   }
 }
+  .chat-bubble {
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 14px;
+  max-width: 90%;
+  text-align: left;
+  overflow-wrap: anywhere;
+  animation: bubbleIn 0.4s ease;
+}
+
+.chat-bubble p {
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+.user-bubble {
+  margin-left: auto;
+  background: linear-gradient(135deg, #004cff, #007bff);
+  color: white;
+  border-bottom-right-radius: 3px;
+}
+
+.ai-bubble {
+  margin-right: auto;
+  background: rgba(0, 217, 255, 0.12);
+  border: 1px solid #00d9ff;
+  color: #baf7ff;
+  border-bottom-left-radius: 3px;
+}
+
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 <body>
@@ -393,14 +427,19 @@ speechSynthesis.speak(msg);
   }
 }
 
+
 function showChatHistory() {
   let history = JSON.parse(localStorage.getItem("shuaibChatHistory") || "[]");
   let box = document.getElementById("chatHistory");
 
   box.innerHTML = history.map(msg =>
-    `<p><b>${msg.role === "user" ? "You" : "SHUAIB AI"}:</b> ${msg.content}</p>`
+    `<div class="chat-bubble ${msg.role === "user" ? "user-bubble" : "ai-bubble"}">
+      <b>${msg.role === "user" ? "YOU" : "SHUAIB AI"}</b>
+      <p>${msg.content}</p>
+    </div>`
   ).join("");
 }
+  
 async function chat() {
   let question = document.getElementById("userInput").value.trim();
   let reply = document.getElementById("reply");
