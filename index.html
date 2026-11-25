@@ -88,9 +88,30 @@ footer{padding:25px;color:#548ba8}
     <button onclick="clearChat()">🗑️ CLEAR CHAT</button>
   <p id="reply">Hello! I am Shuaib AI.</p>
   </div>
+  <div id="clock" style="text-align:center; color:#00d9ff; font-size:28px; font-weight:bold;">
+</div>
+<div id="date" style="text-align:center; color:white; font-size:16px;">
+</div>
   
   <footer>POWERED BY SHUAIB © 2026</footer>
 <script>
+  function updateClock() {
+  const now = new Date();
+
+  document.getElementById("clock").innerText =
+    now.toLocaleTimeString("en-IN");
+
+  document.getElementById("date").innerText =
+    now.toLocaleDateString("en-IN", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
 function jarvisGreeting() {
   let msg = new SpeechSynthesisUtterance(
     "Welcome back, SHUAIB. All systems are online."
