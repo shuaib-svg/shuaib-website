@@ -130,7 +130,8 @@ async function chat() {
   }
 
   reply.innerText = "SHUAIB AI is thinking...";
-
+let chatHistory = JSON.parse(localStorage.getItem("shuaibChatHistory") || "[]");
+chatHistory.push({ role: "user", content: question });
   try {
     const response = await fetch(
       "https://noisy-voice-88ee.alosha-alban.workers.dev",
@@ -139,11 +140,18 @@ async function chat() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ message: question })
+        body: JSON.stringify({
+  message: question,
+  messages: chatHistory
+})
       }
     );
 
     const data = await response.json();
+    if (data.reply) {
+  chatHistory.push({ role: "assistant", content: data.reply });
+  localStorage.setItem("shuaibChatHistory", JSON.stringify(chatHistory.slice(-20)));
+    }
 
     reply.innerText = data.reply || data.error || "No response received.";
     if (data.reply) {
