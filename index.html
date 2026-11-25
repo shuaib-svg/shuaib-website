@@ -193,7 +193,21 @@ input:focus {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 94%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
 
+.cards-row .card {
+  margin: 0;
+  max-width: none;
+  min-width: 0;
+  padding: 10px 5px;
+}
 footer{padding:25px;color:#548ba8}
 </style>
 </head>
@@ -204,6 +218,7 @@ footer{padding:25px;color:#548ba8}
 </div>
 <h1>HELLO, I'M SHUAIB</h1>
 <p>WELCOME TO MY DIGITAL WORLD</p>
+  <div class="cards-row">
 <div class="card">
 <h2>SYSTEM STATUS</h2>
 <p>● ALL SYSTEMS ONLINE</p>
@@ -218,6 +233,7 @@ footer{padding:25px;color:#548ba8}
 <button onclick="speak()">VOICE SYSTEM</button>
 <button onclick="alert('JARVIS SYSTEM ONLINE')">SYSTEM CHECK</button>
 </div>
+  </div>
   <div class="ai-chat">
   <h2>SHUAIB AI CHAT</h2>
     <div id="chatHistory"></div>
