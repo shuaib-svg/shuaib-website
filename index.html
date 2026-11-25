@@ -227,6 +227,29 @@ input:focus {
   padding: 10px 5px;
     }
 footer{padding:25px;color:#548ba8}
+  .chat-screen {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 15px;
+  padding: 15px;
+  border: 1px solid #007bff;
+  border-radius: 15px;
+  background: rgba(0, 20, 50, 0.7);
+}
+
+.ai-panel {
+  border: 1px solid #007bff;
+  border-radius: 15px;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bot-icon {
+  font-size: 75px;
+  filter: drop-shadow(0 0 15px #00d9ff);
+}
 </style>
 </head>
 <body>
@@ -254,7 +277,12 @@ footer{padding:25px;color:#548ba8}
   </div>
   <div class="ai-chat">
   <h2>SHUAIB AI CHAT</h2>
-    <div id="chatHistory"></div>
+    <div class="chat-screen">
+  <div id="chatHistory"></div>
+  <div class="ai-panel">
+    <div class="bot-icon">🤖</div>
+  </div>
+    </div>
   <input type="text" id="userInput" placeholder="Ask me anything...">
     <button onclick="startListening()">🎙️ MIC</button>
   <button onclick="chat()">SEND</button>
