@@ -88,8 +88,18 @@ footer{padding:25px;color:#548ba8}
     <button onclick="clearChat()">🗑️ CLEAR CHAT</button>
   <p id="reply">Hello! I am Shuaib AI.</p>
   </div>
-<footer>POWERED BY SHUAIB © 2026</footer>
+  
+  <footer>POWERED BY SHUAIB © 2026</footer>
 <script>
+function jarvisGreeting() {
+  let msg = new SpeechSynthesisUtterance(
+    "Welcome back, SHUAIB. All systems are online."
+  );
+  msg.lang = "en-US";
+  msg.rate = 0.9;
+  msg.pitch = 0.85;
+  speechSynthesis.speak(msg);
+}
 function speak(){
 if('speechSynthesis' in window){
 let msg=new SpeechSynthesisUtterance("Hello Shuaib. Jarvis system is online.");
@@ -189,8 +199,7 @@ msg.pitch = 0.85;
   } catch (error) {
     reply.innerText = "Connection error. Please try again.";
   }
-}5
+}
   showChatHistory();
+  window.addEventListener("load", jarvisGreeting);
 </script>
-</body>
-</html>
