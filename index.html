@@ -419,16 +419,6 @@ function jarvisGreeting() {
   speechSynthesis.speak(msg);
 }
 
-msg.onend = () => {
-  if (avatar) avatar.classList.remove("speaking");
-};
-
-msg.onerror = () => {
-  if (avatar) avatar.classList.remove("speaking");
-};
-
-speechSynthesis.speak(msg);
-}
 function speak(){
   if('speechSynthesis' in window){
     let avatar = document.querySelector(".ai-avatar");
